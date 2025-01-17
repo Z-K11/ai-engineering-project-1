@@ -13,3 +13,14 @@ from sklearn.metrics import log_loss
 from sklearn.metrics import confusion_matrix,accuracy_score
 import sklearn.metrics as metrics
 dataframe = pd.read_csv('./csv/Weather_Data.csv')
+print(dataframe.head())
+df_processed = pd.get_dummies(data=dataframe,columns=['RainToday', 'WindGustDir', 'WindDir9am', 'WindDir3pm'])
+print(df_processed.head())
+df_processed.replace(['No','Yes'],[0,1],inplace=True)
+print(df_processed)
+df_processed.drop('Date',axis=1,inplace=True)
+df_processed=df_processed.astype(float)
+print(df_processed)
+feature=df_processed.drop('RainTomorrow',axis=1)
+y=df_processed['RainTomorrow']
+print(y.head())
